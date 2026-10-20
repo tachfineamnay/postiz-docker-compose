@@ -143,6 +143,7 @@ services:
       ES_SEEDS: "temporal-elasticsearch"
       ES_VERSION: "v7"
       TEMPORAL_NAMESPACE: "default"
+      BIND_ON_IP: "0.0.0.0"
     networks:
       - temporal-network
     expose:
@@ -166,7 +167,7 @@ services:
             - value: true
               constraints: {}
     healthcheck:
-      test: ["CMD", "temporal", "operator", "cluster", "health", "--address", "temporal:7233"]
+      test: ["CMD", "temporal", "operator", "cluster", "health", "--address", "127.0.0.1:7233"]
       interval: 15s
       timeout: 10s
       retries: 15
